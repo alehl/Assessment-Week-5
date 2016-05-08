@@ -12,7 +12,7 @@ db = SQLAlchemy()
 ##############################################################################
 # Part 1: Compose ORM
 
-class Model(db.Model):
+class Models(db.Model):
 
     __tablename__ = "models"
 
@@ -23,8 +23,12 @@ class Model(db.Model):
 
     brand = db.relationship("Brand", backref=db.backref("models", order_by=id))
 
+    def __repr__(self):
 
-class Brand(db.Model):
+        return "<ID: %s - Year: %s - Name: %s>" % (self.id, self.year, self.name)
+
+
+class Brands(db.Model):
 
     __tablename__ = "brands"
     
@@ -34,6 +38,9 @@ class Brand(db.Model):
     headquarters = db.Column(db.String(100), nullable=False)
     discounted = db.Column(db.Integer, nullable=True)
 
+    def ___repr___(self):
+
+        return "<Name: %s - Founded: %s - Headquarters: %s>" % (self.name, self.founded, self.headquarters)
 
 # End Part 1
 ##############################################################################
